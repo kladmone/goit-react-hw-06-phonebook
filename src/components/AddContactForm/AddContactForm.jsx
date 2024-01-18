@@ -16,28 +16,31 @@ export const AddContactForm = ({ handleAddContact }) => {
   };
 
   return (
-    <form className={css.form} onSubmit={handleFormSubmit}>
-      <label className={css.formLabel}>
-        <span>Name</span>
-        <input
-          type="text"
-          name="name"
-          required
-          value={name}
-          onChange={e => setName(e.target.value)}
-        />
-      </label>
-      <label className={css.formLabel}>
-        <span>Number</span>
-        <input
-          type="tel"
-          name="number"
-          required
-          value={number}
-          onChange={e => setNumber(e.target.value)}
-        />
-      </label>
-      <button type="submit">Add contact</button>
-    </form>
+    <div className={css.phonebookContainer}>
+      <h1>Phonebook</h1>
+      <form className={css.form} onSubmit={handleFormSubmit}>
+        <label className={css.formLabel}>
+          <span>Name</span>
+          <input
+            type="text"
+            name="name"
+            required
+            value={name}
+            onChange={e => setName(e.target.value)}
+          />
+        </label>
+        <label className={css.formLabel}>
+          <span>Number</span>
+          <input
+            type="tel"
+            name="number"
+            required
+            value={number}
+            onChange={e => setNumber(e.target.value)}
+          />
+        </label>
+        <button type="submit">Add contact</button>
+      </form>
+    </div>
   );
 };
