@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { nanoid } from 'nanoid';
-import { addContact } from 'redux/contacts/contactsSlicer';
+import { addContact } from '../../redux/contacts/contactsSlicer';
 import css from './AddContactForm.module.css';
+import { useDispatch } from 'react-redux';
 
-export const AddContactForm = ({ contacts, dispatch }) => {
+export const AddContactForm = ({ contacts }) => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
+  const dispatch = useDispatch();
 
   const handleAddContact = formData => {
     const hasDuplicates = contacts.some(

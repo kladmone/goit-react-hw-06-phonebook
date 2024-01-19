@@ -1,16 +1,16 @@
 import { AddContactForm, ContactList, Filter } from 'components';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { selectContacts, selectFilter } from './redux/selectors';
 
 export const App = () => {
-  const dispatch = useDispatch();
-  const contacts = useSelector(store => store.phonebook.contacts);
-  const filter = useSelector(store => store.phonebook.filter);
+  const contacts = useSelector(selectContacts);
+  const filter = useSelector(selectFilter);
 
   return (
     <div>
-      <AddContactForm handleAddContact={contacts} dispatch={dispatch} />
-      <Filter filter={filter} dispatch={dispatch} />
-      <ContactList filter={filter} dispatch={dispatch} />
+      <AddContactForm contacts={contacts} />
+      <Filter filter={filter} />
+      <ContactList filter={filter} contacts={contacts} />
     </div>
   );
 };
