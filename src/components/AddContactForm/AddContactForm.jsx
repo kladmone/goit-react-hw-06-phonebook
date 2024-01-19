@@ -1,8 +1,26 @@
 import React, { useState } from 'react';
+import { nanoid } from 'nanoid';
+import { addContact } from 'redux/contacts/contactsSlicer';
 import css from './AddContactForm.module.css';
-export const AddContactForm = ({ handleAddContact }) => {
+
+export const AddContactForm = ({ contacts, dispatch }) => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
+
+  const handleAddContact = formData => {
+    const hasDuplicates = contacts.some(
+      contact => contact.name.toLowerCase() === formData.name.toLowerCase()
+    );
+    if (hasDuplicates) {
+      alert(`${formData.name} is already in contacts!`);
+      return;
+    }
+
+    const finalContact = { ...formData, id: nanoid() };
+
+    const action = addContact(finalContact);
+    dispatch(action);
+  };
 
   const handleFormSubmit = event => {
     event.preventDefault();
